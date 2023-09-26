@@ -20,20 +20,21 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div>
-          <nav>
+        <nav>
+          <div>
             {/* This is not optimized */}
             {/* <a href="/">Home</a> */}
 
             {/* This is optimized */}
             <Link href="/">Home</Link>
             <Link href="/about">About</Link>
-            <Link href="/animals">Animals</Link>
-          </nav>
-          {/* Will only update on site refresh */}
+            <Link href="/products">Products</Link>
+          </div>
           {Math.floor(Math.random() * 10)}
-          {children}
-        </div>
+        </nav>
+        {/* Will only update on site refresh */}
+
+        {children}
       </body>
     </html>
   );
