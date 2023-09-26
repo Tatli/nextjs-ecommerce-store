@@ -6,7 +6,8 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "jsx": "preserve"
   },
   "include": [
     "**/.eslintrc.cjs",
@@ -16,6 +17,7 @@
     "**/*.jsx",
     "**/*.cjs",
     "**/*.mjs",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "app/about/page.tsc"
   ]
 }
