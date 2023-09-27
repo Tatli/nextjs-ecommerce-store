@@ -28,6 +28,7 @@ export default function RootLayout({
             {/* This is optimized */}
             <Link href="/">Home</Link>
             <Link href="/about">About</Link>
+            <Link href="/fruits">Fruits</Link>
             <Link href="/products">Products</Link>
           </div>
           {Math.floor(Math.random() * 10)}
