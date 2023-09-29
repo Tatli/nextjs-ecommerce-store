@@ -9,3 +9,7 @@ const products = [
 export function getProducts() {
   return products;
 }
+
+export function getProduct(id: number) {
+  return products.find((product) => product.id === id);
+}

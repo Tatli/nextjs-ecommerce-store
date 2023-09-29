@@ -6,7 +6,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   // This is an object
-  const myComplexObject = { name: 'Osman', hobby: 'Coding' };
+  const myComplexObject = { name: 'Tatli', hobby: 'Coding' };
 
   // This is a JS string
   const myComplexObjectAsString = JSON.stringify(myComplexObject);
