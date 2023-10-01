@@ -17,7 +17,6 @@
     "**/*.jsx",
     "**/*.cjs",
     "**/*.mjs",
-    ".next/types/**/*.ts",
-    "app/about/page.tsc"
+    ".next/types/**/*.ts"
   ]
 }
