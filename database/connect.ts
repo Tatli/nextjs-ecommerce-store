@@ -26,7 +26,7 @@ export function setEnvironmentVariables() {
   // End replacement for dotenv-safe
 }
 
-// Also call it big brain
+// Also call it - big brain
 setEnvironmentVariables();
 
 // Instead of connecting to our database like this, we're going to make this connection with globalThis or smth
@@ -40,6 +40,12 @@ setEnvironmentVariables();
 //   },
 // });
 
+// globalThis is an environment in our global ecosystem
+// sets up a variable that is global
+// it exists in the browser and in node js
+// In node js: type node into console, then globalThis -> returns Object
+// In browser: Console -> globalThis -> object
+// ### postgreSqlClient will be globally available in our project
 declare module globalThis {
   let postgresSqlClient: Sql;
 }
@@ -47,8 +53,18 @@ declare module globalThis {
 // Connect only once to the database
 // https://github.com/vercel/next.js/issues/7811#issuecomment-715259370
 function connectOneTimeToDatabase() {
+  // If there is no postgresSqlClient defined in globalThis
+  // initiate it with a new postgres() instance
   if (!('postgresSqlClient' in globalThis)) {
-    globalThis.postgresSqlClient = postgres();
+    globalThis.postgresSqlClient = postgres({
+      transform: {
+        // Transform values from "snake_case" to "camelCase"
+        ...postgres.camel,
+
+        // In postgres undefined value will lead to error when you send undefined data
+        undefined: null,
+      },
+    });
   }
 
   // Workaround to force Next.js Dynamic Rendering:
@@ -75,8 +91,9 @@ function connectOneTimeToDatabase() {
 export const sql = connectOneTimeToDatabase();
 
 export async function getAllProductsFromDatabase() {
-  const products = await sql`SELECT * from products`;
-
+  const products = await sql`
+  SELECT * from products
+  `;
   return products;
 }
 
