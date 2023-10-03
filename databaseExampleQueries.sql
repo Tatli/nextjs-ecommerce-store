@@ -18,5 +18,5 @@ VALUES
 ('Website incl Text and SEO', 1999, 'We create your Website, the text, and Search Machine Optimization'),
 ('99GB Webspace (monthly)', 39, 'Your Website will be hosted on our shared host server');
 
--- Read all animals (R in CRUD - Read)
+-- Read all products (R in CRUD - Read)
 SELECT * from products;

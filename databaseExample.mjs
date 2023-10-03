@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs';
 import dotenv from 'dotenv';
-import postgres from 'postgres';
+
+// this file is used by node.js only
 
 // tag template function
 // when we say sql and we do `` which is a tag template. Inside the backtick we can write the query, another function, other code.

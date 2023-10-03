@@ -1,17 +1,17 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getAllProductsFromDatabase } from '../../database/connect';
+// import { getAllProductsFromDatabase } from '../../database/connect';
 import { getProducts } from '../../database/products';
 
 export const metadata: Metadata = {
   title: 'Products',
 };
 
-export default function ProductsPage() {
-  const products = getProducts();
-  const databaseProducts = getAllProductsFromDatabase();
-  console.log(databaseProducts.then((product) => console.log(product)));
+export default async function ProductsPage() {
+  const products = await getProducts();
+  console.log('Check', products);
+
   return (
     <div>
       <h1>Our Services:</h1>
