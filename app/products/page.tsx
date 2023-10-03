@@ -5,17 +5,16 @@ import { getAllProductsFromDatabase } from '../../database/connect';
 import { getProducts } from '../../database/products';
 
 export const metadata: Metadata = {
-  title: 'Animals page',
+  title: 'Products',
 };
 
 export default function ProductsPage() {
   const products = getProducts();
-  console.log(
-    getAllProductsFromDatabase().then((product) => console.log(product)),
-  );
+  const databaseProducts = getAllProductsFromDatabase();
+  console.log(databaseProducts.then((product) => console.log(product)));
   return (
     <div>
-      <h1>Product overview:</h1>
+      <h1>Our Services:</h1>
       {products.map((product) => {
         return (
           <div key={`product-div-${product.id}`}>

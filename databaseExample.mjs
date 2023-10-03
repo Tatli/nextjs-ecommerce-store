@@ -32,7 +32,7 @@ export function setEnvironmentVariables() {
   // End replacement for dotenv-safe
 }
 
-// Also call it big brain
+// Also call it - big brain
 setEnvironmentVariables();
 
 // Postgres MAGICALLY knows it needs this variable to run, so it will just take it and use it to login

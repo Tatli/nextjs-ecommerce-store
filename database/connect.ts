@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import dotenv from 'dotenv';
 import { headers } from 'next/headers';
-import postgres from 'postgres';
+import postgres, { Sql } from 'postgres';
 
 export function setEnvironmentVariables() {
   // Replacement for unmaintained dotenv-safe package
@@ -29,7 +29,9 @@ export function setEnvironmentVariables() {
 // Also call it - big brain
 setEnvironmentVariables();
 
-// Instead of connecting to our database like this, we're going to make this connection with globalThis or smth
+// Instead of connecting to our database like this
+// We connect by setting the connection with globalThis
+//
 // const sql = postgres({
 //   transform: {
 //     // Transform values from "snake_case" to "camelCase"
