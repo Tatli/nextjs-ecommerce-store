@@ -10,7 +10,7 @@ export default function Cart() {
     <div>
       <h1>Cart:</h1>
       <Link href="/checkout">
-        <button>Proceed to checkout</button>
+        <button data-test-id="cart-checkout">Proceed to checkout</button>
       </Link>
     </div>
   );

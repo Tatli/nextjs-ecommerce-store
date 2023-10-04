@@ -6,7 +6,7 @@ import ProductForm from './ProductForm';
 export async function generateMetadata({ params }) {
   const singleProduct = await getProductById(Number(params.productId));
   return {
-    title: singleProduct ? singleProduct.name : '',
+    title: singleProduct ? `Product Details: ${singleProduct.name}` : '',
   };
 }
 export default async function ProductPage(props) {
@@ -21,15 +21,17 @@ export default async function ProductPage(props) {
   return (
     <div>
       <div>This is a single product page</div>
-      <ProductForm />
-      <Image
+      <h1>{singleProduct.name}</h1>
+      <img
         src={`/images/${singleProduct.name}.jpg`}
         alt={singleProduct.name}
         width={400}
         height={400}
+        data-test-id="product-image"
       />
       <p>Price: {singleProduct.price}</p>
       <p>Description: {singleProduct.description}</p>
+      <ProductForm />
     </div>
   );
 }
