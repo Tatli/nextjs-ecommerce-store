@@ -7,7 +7,6 @@ import { getCookie } from '../../../util/cookies';
 export async function updateProductQuantityCookie(quantityInput, productId) {
   // Get current value of product quantity in Cart and log in console
   const productQuantityCookie = getCookie(`quantityProductId: ${productId}`);
-  console.log(productQuantityCookie);
 
   // Convert cookie value to a number, or 0 if it's not set
   const currentQuantity = parseInt(productQuantityCookie) || 0;
@@ -23,4 +22,20 @@ export async function updateProductQuantityCookie(quantityInput, productId) {
   // Set value of cookie 'cart' to {value}
   // Action has to be awaited
   await cookies().set(`quantityProductId: ${productId}`, quantityCombined);
+}
+
+export async function updateCartCookie(quantityInput) {
+  // Get current value of total quantity of all products in Cart
+  const cartQuantityCookie = getCookie(`cart`);
+
+  // Convert cookie value to a number, or 0 if it's not set
+  const currentQuantity = parseInt(cartQuantityCookie) || 0;
+
+  // Convert input field value to a number
+  const quantityToAdd = parseInt(quantityInput);
+
+  // Add input field quantity to cart cookie quantity
+  const quantityCombined = currentQuantity + quantityToAdd;
+
+  await cookies().set(`cart`, quantityCombined);
 }
