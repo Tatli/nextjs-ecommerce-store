@@ -3,6 +3,7 @@ import './globals.scss';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Link from 'next/link';
+import HeaderCart from './HeaderCart';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -37,7 +38,7 @@ export default function RootLayout({
             </Link>
           </header>
           <span data-test-id="cart-count">
-            {Math.floor(Math.random() * 10)}
+            <HeaderCart />
           </span>
         </nav>
         {/* Will only update on site refresh */}
