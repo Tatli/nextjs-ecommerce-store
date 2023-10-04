@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { getProductById } from '../../../database/products';
-import ProductForm from './ProductForm';
+import ProductQuantity from './ProductQuantity';
 
 export async function generateMetadata({ params }) {
   const singleProduct = await getProductById(Number(params.productId));
@@ -29,9 +29,9 @@ export default async function ProductPage(props) {
         height={400}
         data-test-id="product-image"
       />
-      <p>Price: {singleProduct.price}</p>
-      <p>Description: {singleProduct.description}</p>
-      <ProductForm />
+      <span data-test-id="product-price">Price: {singleProduct.price}</span>
+      <span>Description: {singleProduct.description}</span>
+      <ProductQuantity />
     </div>
   );
 }
