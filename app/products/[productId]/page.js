@@ -29,9 +29,12 @@ export default async function ProductPage(props) {
         height={400}
         data-test-id="product-image"
       />
+      <br />
       <span data-test-id="product-price">Price: {singleProduct.price}</span>
+      <br />
       <span>Description: {singleProduct.description}</span>
-      <ProductQuantity />
+      <br />
+      <ProductQuantity productId={props.params.productId} />
     </div>
   );
 }

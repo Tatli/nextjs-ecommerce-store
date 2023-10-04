@@ -1,19 +1,30 @@
 'use client';
 import React, { useState } from 'react';
+import { updateProductQuantityCookie } from './actions';
 
-export default function ProductQuantity() {
-  const [amount, setAmount] = useState(1);
+export default function ProductQuantity(props) {
+  const [quantity, setQuantity] = useState(1);
 
   return (
-    <label>
-      Quantity:
-      <input
-        onChange={(e) => setAmount(e.currentTarget.value)}
-        value={amount}
-        data-test-id="product-quantity"
-        type="number"
-        min="0"
-      />
-    </label>
+    <form>
+      <label>
+        Quantity:
+        <input
+          value={quantity}
+          onChange={(e) => setQuantity(e.currentTarget.value)}
+          data-test-id="product-quantity"
+          type="number"
+          min="1"
+        />
+      </label>
+      <button
+        formAction={async () =>
+          await updateProductQuantityCookie(quantity, props.productId)
+        }
+        data-test-id="product-add-to-cart"
+      >
+        Add to cart
+      </button>
+    </form>
   );
 }
