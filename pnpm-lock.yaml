@@ -26,6 +26,9 @@ dependencies:
   scss:
     specifier: ^0.2.4
     version: 0.2.4
+  secure-json-parse:
+    specifier: ^2.7.0
+    version: 2.7.0
   sharp:
     specifier: ^0.32.6
     version: 0.32.6
@@ -3291,6 +3294,10 @@ packages:
     engines: {node: '>= 0.2.0'}
     dependencies:
       ometa: 0.2.2
+    dev: false
+
+  /secure-json-parse@2.7.0:
+    resolution: {integrity: sha512-6aU+Rwsezw7VR8/nyvKTx8QpWH9FrcYiXXlqC4z5d5XQBDRqtbfsRjnwGyqbi3gddNtWHuEk9OANUotL26qKUw==}
     dev: false
 
   /semver@5.7.2:

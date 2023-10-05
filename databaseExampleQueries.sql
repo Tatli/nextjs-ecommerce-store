@@ -9,6 +9,8 @@ id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
  description varchar(100)
 );
 
+
+
 -- Insert into products
 INSERT INTO products
 (name, price, description)

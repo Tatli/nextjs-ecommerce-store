@@ -33,9 +33,6 @@ export default function RootLayout({
             <Link data-test-id="products-link" href="/products">
               Products
             </Link>
-            <Link data-test-id="cart-link" href="/cart">
-              Cart
-            </Link>
           </header>
           <span data-test-id="cart-count">
             <HeaderCart />

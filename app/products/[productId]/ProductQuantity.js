@@ -1,6 +1,6 @@
 'use client';
-import React, { useState } from 'react';
-import { updateCartCookie, updateProductQuantityCookie } from './actions';
+import { useState } from 'react';
+import { setProductQuantityInCart } from './actions';
 
 export default function ProductQuantity(props) {
   const [quantity, setQuantity] = useState(1);
@@ -19,8 +19,9 @@ export default function ProductQuantity(props) {
       </label>
       <button
         formAction={async () => {
-          await updateProductQuantityCookie(quantity, props.productId);
-          await updateCartCookie(quantity);
+          await setProductQuantityInCart(props.productId, quantity);
+          // await updateProductQuantityCookie(quantity, props.productId);
+          // await updateCartCookie(quantity);
         }}
         data-test-id="product-add-to-cart"
       >
