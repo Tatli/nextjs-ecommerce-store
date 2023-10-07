@@ -4,7 +4,7 @@ import SetCookieForm from './SetCookieForm';
 export default function setCookiePage() {
   // Get value of testCookie
   const getCookieValue = getCookie('testCookie');
-  console.log(getCookieValue);
+  // console.log(getCookieValue);
   // const parsedCookie = JSON.parse(getCookieValue);
 
   return (

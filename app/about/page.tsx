@@ -14,7 +14,7 @@ export default function AboutPage() {
 
   // Convert Objects as string to JS object
   const myComplexObjectIntoJsonAgain = JSON.parse(myComplexObjectAsString);
-  console.log(myComplexObjectIntoJsonAgain);
+  // console.log(myComplexObjectIntoJsonAgain);
   return (
     <>
       <div>This is my about page</div>

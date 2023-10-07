@@ -1,15 +1,29 @@
 import React from 'react';
 import { getProducts } from '../../database/products';
 import { getCookie } from '../../util/cookies';
+import { parseJson } from '../../util/json';
 
-const products = await getProducts();
+// Get all products from database
+const productsFromDatabase = await getProducts();
+
+// Get products in cart
+const productsInCart = await getCookie(`cart`);
+
+// Convert Cookie from String -> JSON
+const productsInCartJson = parseJson(productsInCart);
+
+// Filter products from Database to products in Cart
+const filteredProducts = productsFromDatabase.filter((product) => {
+  product.id === productsInCartJson.id;
+});
 
 export default function ProductsInCart() {
   return (
     <div>
       <h1>Products in Cart:</h1>
       <ul>
-        {products.map((product) => {
+        {filteredProducts.map((product) => {
+          productsInCartJson.id === product.id;
           // Get quantity of single product in cart
           const productQuantityCookie = getCookie(`cart`);
           // Convert quantity Cookie to a number

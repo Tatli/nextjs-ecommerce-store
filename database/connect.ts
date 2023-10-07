@@ -88,7 +88,7 @@ function connectOneTimeToDatabase() {
     ...sqlParameters: Parameters<typeof globalThis.postgresSqlClient>
   ) => {
     headers();
-    console.log('sqlParameters:', sqlParameters);
+    // console.log('sqlParameters:', sqlParameters);
     return globalThis.postgresSqlClient(...sqlParameters);
   }) as typeof globalThis.postgresSqlClient;
 }
