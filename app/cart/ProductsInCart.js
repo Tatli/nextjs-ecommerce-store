@@ -1,62 +1,103 @@
-import React from 'react';
-import { getProducts } from '../../database/products';
+import { useEffect } from 'react';
+import { getProductById } from '../../database/products';
+// import { getProducts } from '../../database/products';
 import { getCookie } from '../../util/cookies';
 import { parseJson } from '../../util/json';
 
-// Get all products from database
-const productsFromDatabase = await getProducts();
+// // Get all products from database
+// const productsFromDatabase = await getProducts();
+// // console.log(productsFromDatabase);
 
-// Get products in cart
-const productsInCart = await getCookie(`cart`);
+// // Get products in cart
+// const productsInCart = await getCookie(`cart`);
 
-// Convert Cookie from String -> JSON
-const productsInCartJson = parseJson(productsInCart);
+// // Convert Cookie from String -> JSON
+// const productsInCartJson = parseJson(productsInCart);
+// console.log(
+//   `productsInCartJson:, ${productsInCartJson.map((product) => {
+//     console.log(product);
+//   })}`,
+// );
 
-// Filter products from Database to products in Cart
-const filteredProducts = productsFromDatabase.filter((product) => {
-  product.id === productsInCartJson.id;
-});
+// const singleProductFromDatabase = await getProductById(1);
+// console.log(
+//   'I am the name of a single product before the return of the component',
+//   singleProductFromDatabase.price,
+// );
+
+// // Filter products from Database to products in Cart
+// const filteredProducts = productsFromDatabase.filter((product) => {
+//   // Check if products in cart include a product coming from the database
+//   productsInCartJson.includes(product.id);
+//   console.log('last line of .filter');
+// });
 
 export default function ProductsInCart() {
-  return (
-    <div>
-      <h1>Products in Cart:</h1>
-      <ul>
-        {filteredProducts.map((product) => {
-          productsInCartJson.id === product.id;
-          // Get quantity of single product in cart
-          const productQuantityCookie = getCookie(`cart`);
-          // Convert quantity Cookie to a number
-          const currentQuantity = parseInt(productQuantityCookie) || 0;
-          // Calculate subtotal
-          const subtotal = currentQuantity * product.price;
+  useEffect(() => {
+    // Get products in cart
+    const productsInCart = getCookie(`cart`);
 
-          return (
-            /* Single Product Container */
-            <li
-              key={`product-${product.id}`}
-              data-test-id={`cart-product-${product.id}`}
+    // Convert Cookie from String -> JSON
+    const productsInCartJson = parseJson(productsInCart);
+    console.log(
+      `productsInCartJson:, ${productsInCartJson.map((product) => {
+        console.log(product);
+      })}`,
+    );
+  }, []);
+
+  return (
+    <ul>
+      {productsInCartJson.map(async (productInsideCart) => {
+        // Reassuring that what we get is the correct cart item by printing it's object, id, quantity
+        console.log('product in .map:', productInsideCart);
+        console.log('product.id in .map:', productInsideCart.id);
+        console.log(
+          'product.quantity in .map:',
+          productInsideCart.quantity,
+          '\n',
+        );
+
+        // Get a single product from database
+        const singleProductFromDatabase = await getProductById(
+          productInsideCart.id,
+        );
+        // Log product from database
+        console.log('singleProductFromDatabase:', singleProductFromDatabase);
+
+        // Calculate subtotal by multiplying quantity of item in cart with item price from database
+        const subtotal =
+          productInsideCart.quantity * singleProductFromDatabase.price;
+
+        /* Single Product Container */
+        return (
+          <li
+            key={`product-${productInsideCart.id}`}
+            data-test-id={`cart-product-${productInsideCart.id}`}
+          >
+            {/* Display Product Name */}
+            <span>{singleProductFromDatabase.name}</span>
+            <br />
+            {/* Product Quantity */}
+            <span
+              data-test-id={`cart-product-quantity-${productInsideCart.id}`}
             >
-              {/* Display Product Name */}
-              <span>{product.name}</span>
-              <br />
-              {/* Product Quantity */}
-              <span data-test-id={`cart-product-quantity-${product.id}`}>
-                {`Quantity: ${currentQuantity}`}
-              </span>
-              <br />
-              {/* Show Subtotal */}
-              <span>{`Subtotal: ${subtotal}`}</span>
-              <br />
-              {/* Remove Product button */}
-              <button data-test-id={`cart-product-remove-${product.id}`}>
-                Remove
-              </button>
-              <br />
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+              {`Quantity: ${productInsideCart.quantity}`}
+            </span>
+            <br />
+            {/* Show Subtotal */}
+            <span>{`Subtotal: ${subtotal}`}</span>
+            <br />
+            {/* Remove Product button */}
+            <button
+              data-test-id={`cart-product-remove-${productInsideCart.id}`}
+            >
+              Remove
+            </button>
+            <br />
+          </li>
+        );
+      })}
+    </ul>
   );
 }

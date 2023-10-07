@@ -29,6 +29,9 @@ dependencies:
   secure-json-parse:
     specifier: ^2.7.0
     version: 2.7.0
+  server-only:
+    specifier: ^0.0.1
+    version: 0.0.1
   sharp:
     specifier: ^0.32.6
     version: 0.32.6
@@ -51,7 +54,7 @@ devDependencies:
     version: 15.10.3(typescript@5.2.2)
   stylelint-config-upleveled:
     specifier: ^1.0.2
-    version: 1.0.2(postcss@8.4.30)(stylelint@15.10.3)(typescript@5.2.2)
+    version: 1.0.2(postcss@8.4.31)(stylelint@15.10.3)(typescript@5.2.2)
   typescript:
     specifier: latest
     version: 5.2.2
@@ -2946,13 +2949,13 @@ packages:
       postcss: 8.4.30
     dev: true
 
-  /postcss-scss@4.0.8(postcss@8.4.30):
+  /postcss-scss@4.0.8(postcss@8.4.31):
     resolution: {integrity: sha512-Cr0X8Eu7xMhE96PJck6ses/uVVXDtE5ghUTKNUYgm8ozgP2TkgV3LWs3WgLV1xaSSLq8ZFiXaUrj0LVgG1fGEA==}
     engines: {node: '>=12.0'}
     peerDependencies:
       postcss: ^8.4.29
     dependencies:
-      postcss: 8.4.30
+      postcss: 8.4.31
     dev: true
 
   /postcss-selector-parser@6.0.13:
@@ -2963,14 +2966,14 @@ packages:
       util-deprecate: 1.0.2
     dev: true
 
-  /postcss-styled-syntax@0.4.0(postcss@8.4.30)(typescript@5.2.2):
+  /postcss-styled-syntax@0.4.0(postcss@8.4.31)(typescript@5.2.2):
     resolution: {integrity: sha512-LvG++K8LtIyX1Q1mNuZVQYmBo+SCwn90cEkMigo4/I0QwXrEiYt8nPeJ5rrI5Uuh+5w7hRfPyJKlvQdhVZBhUg==}
     peerDependencies:
       postcss: ^8.4.21
     dependencies:
       '@typescript-eslint/typescript-estree': 5.62.0(typescript@5.2.2)
       estree-walker: 2.0.2
-      postcss: 8.4.30
+      postcss: 8.4.31
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -2996,7 +2999,6 @@ packages:
       nanoid: 3.3.6
       picocolors: 1.0.0
       source-map-js: 1.0.2
-    dev: false
 
   /postgres@3.3.5:
     resolution: {integrity: sha512-+JD93VELV9gHkqpV5gdL5/70HdGtEw4/XE1S4BC8f1mcPmdib3K5XsKVbnR1XcAyC41zOnifJ+9YRKxdIsXiUw==}
@@ -3315,6 +3317,10 @@ packages:
     dependencies:
       lru-cache: 6.0.0
 
+  /server-only@0.0.1:
+    resolution: {integrity: sha512-qepMx2JxAa5jjfzxG79yPPq+8BuFToHd1hm7kI+Z4zAq1ftQiP7HcxMhDDItrbtwVeLg/cY2JnKnrcFkmiswNA==}
+    dev: false
+
   /set-function-name@2.0.1:
     resolution: {integrity: sha512-tMNCiqYVkXIZgc2Hnoy2IvC/f8ezc5koaRFkCjrpWzGpCd3qbZXPzVy9MAZzK1ch/X0jvSkojys3oqJN0qCmdA==}
     engines: {node: '>= 0.4'}
@@ -3556,7 +3562,7 @@ packages:
       stylelint-scss: 4.7.0(stylelint@15.10.3)
     dev: true
 
-  /stylelint-config-recommended-scss@10.0.0(postcss@8.4.30)(stylelint@15.10.3):
+  /stylelint-config-recommended-scss@10.0.0(postcss@8.4.31)(stylelint@15.10.3):
     resolution: {integrity: sha512-+YvPgUHi0W5mCJCKdupBCIsWPYNbWuJcRmFtSYujwNg+41ljFknhO9bpY6C+oahv659zW7W1AT7i6DQvJYYr1A==}
     peerDependencies:
       postcss: ^8.3.3
@@ -3565,8 +3571,8 @@ packages:
       postcss:
         optional: true
     dependencies:
-      postcss: 8.4.30
-      postcss-scss: 4.0.8(postcss@8.4.30)
+      postcss: 8.4.31
+      postcss-scss: 4.0.8(postcss@8.4.31)
       stylelint: 15.10.3(typescript@5.2.2)
       stylelint-config-recommended: 11.0.0(stylelint@15.10.3)
       stylelint-scss: 4.7.0(stylelint@15.10.3)
@@ -3580,16 +3586,16 @@ packages:
       stylelint: 15.10.3(typescript@5.2.2)
     dev: true
 
-  /stylelint-config-upleveled@1.0.2(postcss@8.4.30)(stylelint@15.10.3)(typescript@5.2.2):
+  /stylelint-config-upleveled@1.0.2(postcss@8.4.31)(stylelint@15.10.3)(typescript@5.2.2):
     resolution: {integrity: sha512-/PZH+e57HooxosBVISSmySuThLJWuUfgj4FEAlLxS+6V6X+ZKdtonfuxxfKoYtQKEZUyBg+yqrwaa5g6LbWuyw==}
     peerDependencies:
       stylelint: ^15.4.0
     dependencies:
-      postcss-styled-syntax: 0.4.0(postcss@8.4.30)(typescript@5.2.2)
+      postcss-styled-syntax: 0.4.0(postcss@8.4.31)(typescript@5.2.2)
       stylelint: 15.10.3(typescript@5.2.2)
       stylelint-config-css-modules: 4.2.0(stylelint@15.10.3)
       stylelint-config-recommended: 11.0.0(stylelint@15.10.3)
-      stylelint-config-recommended-scss: 10.0.0(postcss@8.4.30)(stylelint@15.10.3)
+      stylelint-config-recommended-scss: 10.0.0(postcss@8.4.31)(stylelint@15.10.3)
     transitivePeerDependencies:
       - postcss
       - supports-color

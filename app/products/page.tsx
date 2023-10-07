@@ -9,13 +9,12 @@ export const metadata: Metadata = {
 };
 
 export default async function ProductsPage() {
-  // Get all Products from Database and log them to console
+  // Get all Products from Database
   const products = await getProducts();
-  console.log('Check', products);
-
   return (
     <div>
       <h1>Our Products:</h1>
+      {/* Map products to display them */}
       {products.map((product) => {
         return (
           <div key={`product-div-${product.id}`}>
