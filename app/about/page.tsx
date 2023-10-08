@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import styles from '../page.module.scss';
 
 export const metadata: Metadata = {
   title: 'About',
@@ -16,7 +17,7 @@ export default function AboutPage() {
   const myComplexObjectIntoJsonAgain = JSON.parse(myComplexObjectAsString);
   // console.log(myComplexObjectIntoJsonAgain);
   return (
-    <>
+    <main className={styles.main}>
       <div>This is my about page</div>
       <h2> JSON.stringify and JSON.parse </h2>
       {/* Don't forget that objects cant be displayed before they are stringified */}
@@ -27,6 +28,6 @@ export default function AboutPage() {
       <div>{myComplexObject.name}</div>
       {/* Objects are not valid as a React child
       <div>{myComplexObject[0]}</div> */}
-    </>
+    </main>
   );
 }

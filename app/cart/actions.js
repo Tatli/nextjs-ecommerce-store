@@ -1,12 +1,13 @@
 'use server';
 import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 import { getCookie } from '../../util/cookies';
 import { parseJson } from '../../util/json';
 
 export async function deleteProduct(productId) {
   console.log('productId inside deleteProduct:', typeof productId);
   // Get cart Cookie
-  const cartCookie = getCookie('cart');
+  const cartCookie = await getCookie('cart');
 
   // if no cartCookie make it empty array, otherwise parseJson to make it an array of objects
   const cartJson = !cartCookie ? [] : parseJson(cartCookie);
@@ -69,4 +70,8 @@ export async function subtractOne(productId) {
   });
 
   cookies().set('cart', JSON.stringify(newCart));
+}
+
+export async function redirectToCheckout() {
+  await redirect('/cart/checkout/');
 }

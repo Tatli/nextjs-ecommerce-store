@@ -7,13 +7,8 @@ export const metadata: Metadata = {
 export default function ThankYou() {
   return (
     <div>
-      <h1>Thank you</h1>
-      <h2>Your purchase:</h2>
-      <ul>
-        <li>Product 1</li>
-        <li>Product 2</li>
-        <li>Product 3</li>
-      </ul>
+      <h1>Thank you for your purchase</h1>
+      <h2>Come again</h2>
     </div>
   );
 }

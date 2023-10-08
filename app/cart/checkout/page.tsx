@@ -1,5 +1,7 @@
 import { Metadata } from 'next';
-import Link from 'next/link';
+import styles from '../../page.module.scss';
+import CartTotal from '../CartTotal';
+import ConfirmOrderButton from './ConfirmOrderButton';
 
 export const metadata: Metadata = {
   title: 'Checkout',
@@ -7,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function Checkout() {
   return (
-    <div>
+    <main className={styles.main}>
       <h1>Checkout: </h1>
       <br />
 
@@ -65,15 +67,9 @@ export default function Checkout() {
           <input data-test-id="checkout-security-code" />
         </label>
         <br />
-        <Link href="/checkout/thankyou">
-          <button data-test-id="checkout-confirm-order">Confirm Order</button>
-        </Link>
       </form>
-
-      <br />
-
-      <h2>Total:</h2>
-      <p>Sum of products placeholder</p>
-    </div>
+      <CartTotal />
+      <ConfirmOrderButton />
+    </main>
   );
 }

@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 // import { getAllProductsFromDatabase } from '../../database/connect';
 import { getProducts } from '../../database/products';
+import styles from '../page.module.scss';
 
 export const metadata: Metadata = {
   title: 'Products',
@@ -12,7 +13,7 @@ export default async function ProductsPage() {
   // Get all Products from Database
   const products = await getProducts();
   return (
-    <div>
+    <main className={styles.main}>
       <h1>Our Products:</h1>
       {/* Map products to display them */}
       {products.map((product) => {
@@ -33,6 +34,6 @@ export default async function ProductsPage() {
           </div>
         );
       })}
-    </div>
+    </main>
   );
 }

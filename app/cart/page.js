@@ -2,7 +2,10 @@ import Link from 'next/link';
 import { getProducts } from '../../database/products';
 import { getCookie } from '../../util/cookies';
 import { parseJson } from '../../util/json';
+import styles from '../page.module.scss';
+import CartTotal from './CartTotal';
 import ChangeQuantity from './ChangeQuantity';
+import RedirectToCheckout from './RedirectToCheckout';
 import RemoveProduct from './RemoveProduct';
 
 // import { RemoveProduct } from './RemoveProduct';
@@ -20,7 +23,7 @@ export function getCookieAsObject() {
   return !productsInCart ? [] : parseJson(productsInCart);
 }
 
-export async function finishedCartObjects() {
+export async function getProductsInCart() {
   try {
     // Get products in cart
     const cartCookieJson = getCookieAsObject();
@@ -60,11 +63,10 @@ export async function finishedCartObjects() {
 }
 
 export default async function Cart() {
-  const productsInCart = await finishedCartObjects();
+  const productsInCart = await getProductsInCart();
 
-  let cartTotal = 0;
   return (
-    <div>
+    <main className={styles.main}>
       <h1>Cart:</h1>
       <h1>Products in Cart:</h1>
       <ul>
@@ -73,7 +75,6 @@ export default async function Cart() {
           const price = Number(product.price);
           const quantity = product.quantity;
           const subtotal = quantity * price;
-          cartTotal += subtotal;
           console.log('quantity', typeof quantity);
           console.log('price', typeof price);
           console.log('subtotal', typeof subtotal);
@@ -103,11 +104,8 @@ export default async function Cart() {
           }
         })}
       </ul>
-      <span>Cart Total: {cartTotal.toFixed(2)}</span>
-      {console.log(cartTotal)}
-      <Link href="/checkout">
-        <button data-test-id="cart-checkout">Proceed to checkout</button>
-      </Link>
-    </div>
+      <CartTotal />
+      <RedirectToCheckout />
+    </main>
   );
 }

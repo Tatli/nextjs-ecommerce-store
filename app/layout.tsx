@@ -21,8 +21,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <nav>
-          <header>
+        <header>
+          <nav>
             {/* This is not optimized */}
             {/* <a href="/">Home</a> */}
 
@@ -33,11 +33,11 @@ export default function RootLayout({
             <Link data-test-id="products-link" href="/products">
               Products
             </Link>
-          </header>
-          <span data-test-id="cart-count">
-            <HeaderCart />
-          </span>
-        </nav>
+            <span data-test-id="cart-count">
+              <HeaderCart />
+            </span>
+          </nav>
+        </header>
         {/* Will only update on site refresh */}
         {children}
       </body>

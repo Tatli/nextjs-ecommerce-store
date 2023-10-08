@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { getProductById } from '../../../database/products';
+import styles from '../../page.module.scss';
 import ProductQuantity from './ProductQuantity';
 
 export async function generateMetadata({ params }) {
@@ -19,7 +20,7 @@ export default async function ProductPage(props) {
     return notFound();
   }
   return (
-    <div>
+    <main className={styles.main}>
       <div>This is a single product page</div>
       <h1>{singleProduct.name}</h1>
       <img
@@ -35,6 +36,6 @@ export default async function ProductPage(props) {
       <span>Description: {singleProduct.description}</span>
       <br />
       <ProductQuantity productId={props.params.productId} />
-    </div>
+    </main>
   );
 }
