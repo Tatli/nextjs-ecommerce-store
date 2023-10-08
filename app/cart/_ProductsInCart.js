@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
 import { getProductById } from '../../database/products';
 // import { getProducts } from '../../database/products';
 import { getCookie } from '../../util/cookies';
 import { parseJson } from '../../util/json';
+// import RemoveProduct from './RemoveProduct';
+import { deleteProduct } from './actions';
 
-// // Get all products from database
+// // // Get all products from database
 // const productsFromDatabase = await getProducts();
 // // console.log(productsFromDatabase);
 
@@ -18,6 +19,13 @@ import { parseJson } from '../../util/json';
 //     console.log(product);
 //   })}`,
 // );
+
+export function getCookieAsObject() {
+  // Get products in cart
+  const productsInCart = getCookie(`cart`);
+
+  return !productsInCart ? [] : parseJson(productsInCart);
+}
 
 // const singleProductFromDatabase = await getProductById(1);
 // console.log(
@@ -33,35 +41,24 @@ import { parseJson } from '../../util/json';
 // });
 
 export default function ProductsInCart() {
-  useEffect(() => {
-    // Get products in cart
-    const productsInCart = getCookie(`cart`);
-
-    // Convert Cookie from String -> JSON
-    const productsInCartJson = parseJson(productsInCart);
-    console.log(
-      `productsInCartJson:, ${productsInCartJson.map((product) => {
-        console.log(product);
-      })}`,
-    );
-  }, []);
-
+  const productsInCartJson = getCookieAsObject();
   return (
     <ul>
       {productsInCartJson.map(async (productInsideCart) => {
         // Reassuring that what we get is the correct cart item by printing it's object, id, quantity
-        console.log('product in .map:', productInsideCart);
-        console.log('product.id in .map:', productInsideCart.id);
-        console.log(
-          'product.quantity in .map:',
-          productInsideCart.quantity,
-          '\n',
-        );
+        // console.log('product in .map:', productInsideCart);
+        // console.log('product.id in .map:', productInsideCart.id);
+        // console.log(
+        //   'product.quantity in .map:',
+        //   productInsideCart.quantity,
+        //   '\n',
+        // );
 
         // Get a single product from database
         const singleProductFromDatabase = await getProductById(
           productInsideCart.id,
         );
+        const parsedItemId = Number(productInsideCart.id);
         // Log product from database
         console.log('singleProductFromDatabase:', singleProductFromDatabase);
 
@@ -87,13 +84,6 @@ export default function ProductsInCart() {
             <br />
             {/* Show Subtotal */}
             <span>{`Subtotal: ${subtotal}`}</span>
-            <br />
-            {/* Remove Product button */}
-            <button
-              data-test-id={`cart-product-remove-${productInsideCart.id}`}
-            >
-              Remove
-            </button>
             <br />
           </li>
         );
