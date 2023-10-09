@@ -2,7 +2,7 @@
 -- nextjs_ecommerce_store
 
 -- Create products table
-CREATE TABLE PRODUCTS(
+CREATE TABLE products(
 id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
  name varchar(40) NOT NULL,
  price decimal(8,2) NOT NULL,
