@@ -16,37 +16,44 @@ export default function Checkout() {
       <form>
         <label>
           First Name:
-          <input data-test-id="checkout-first-name" />
+          <input placeholder="First Name" data-test-id="checkout-first-name" />
         </label>
         <br />
         <label>
           Last Name:
-          <input data-test-id="checkout-last-name" />
+          <input placeholder="Last Name" data-test-id="checkout-last-name" />
         </label>
         <br />
         <label>
           E-Mail:
-          <input type="email" data-test-id="checkout-email" />
+          <input
+            placeholder="Email"
+            type="email"
+            data-test-id="checkout-email"
+          />
         </label>
         <br />
         <label>
           Address:
-          <input data-test-id="checkout-address" />
+          <input placeholder="Address" data-test-id="checkout-address" />
         </label>
         <br />
         <label>
           City:
-          <input data-test-id="checkout-city" />
+          <input placeholder="City" data-test-id="checkout-city" />
         </label>
         <br />
         <label>
           Postal Code:
-          <input data-test-id="checkout-postal-code" />
+          <input
+            placeholder="Postal Code"
+            data-test-id="checkout-postal-code"
+          />
         </label>
         <br />
         <label>
           Country:
-          <input data-test-id="checkout-country" />
+          <input placeholder="Country" data-test-id="checkout-country" />
         </label>
         <br />
         <label>
@@ -59,12 +66,15 @@ export default function Checkout() {
         <br />
         <label>
           Expiration Date:
-          <input data-test-id="checkout-expiration-date" />
+          <input
+            placeholder="MM/YYYY"
+            data-test-id="checkout-expiration-date"
+          />
         </label>
         <br />
         <label>
           Security Code:
-          <input data-test-id="checkout-security-code" />
+          <input placeholder="123" data-test-id="checkout-security-code" />
         </label>
         <br />
       </form>

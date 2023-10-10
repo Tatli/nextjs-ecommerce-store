@@ -2,8 +2,8 @@ import { getProductById } from '../../database/products';
 // import { getProducts } from '../../database/products';
 import { getCookie } from '../../util/cookies';
 import { parseJson } from '../../util/json';
+
 // import RemoveProduct from './RemoveProduct';
-import { deleteProduct } from './actions';
 
 // // // Get all products from database
 // const productsFromDatabase = await getProducts();
@@ -58,7 +58,6 @@ export default function ProductsInCart() {
         const singleProductFromDatabase = await getProductById(
           productInsideCart.id,
         );
-        const parsedItemId = Number(productInsideCart.id);
         // Log product from database
         console.log('singleProductFromDatabase:', singleProductFromDatabase);
 

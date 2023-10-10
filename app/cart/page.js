@@ -25,10 +25,6 @@ export default async function Cart() {
           const price = Number(product.price);
           const quantity = product.quantity;
           const subtotal = quantity * price;
-          console.log('quantity', typeof quantity);
-          console.log('price', typeof price);
-          console.log('subtotal', typeof subtotal);
-          console.log('cartTotal', typeof cartTotal);
 
           if (product.quantity > 0) {
             return (

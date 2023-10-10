@@ -18,7 +18,7 @@ export async function setProductQuantityInCart(productId, quantity) {
 
   // Convert the quantity inside of the matched item to an integer/number
   if (itemInCart) {
-    const updatedQuantity = parseInt(itemInCart.quantity) + parseInt(quantity);
+    const updatedQuantity = itemInCart.quantity + quantity;
     itemInCart.quantity = updatedQuantity;
   } else {
     cartJson.push({

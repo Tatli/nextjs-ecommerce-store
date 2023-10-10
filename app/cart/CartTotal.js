@@ -20,20 +20,20 @@ export async function getProductsInCart() {
     const productsInCart = cartCookieJson
       .map((cartItem) => {
         const productId = parseInt(cartItem.id);
-        const product = productsFromDatabase.find(
+        const productFromDatabase = productsFromDatabase.find(
           (product) => product.id === productId,
         );
-        if (!product) {
+        if (!productFromDatabase) {
           return null;
         }
 
         const quantity = parseInt(cartItem.quantity);
-        const subtotal = parseFloat(product.price) * quantity;
+        const subtotal = parseFloat(productFromDatabase.price) * quantity;
 
         return {
-          id: product.id,
-          name: product.name,
-          price: product.price,
+          id: productFromDatabase.id,
+          name: productFromDatabase.name,
+          price: productFromDatabase.price,
           quantity: quantity,
           total: subtotal,
         };

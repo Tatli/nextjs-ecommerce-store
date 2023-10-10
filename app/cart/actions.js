@@ -23,53 +23,70 @@ export async function deleteProduct(productId) {
     }
   });
 
+  console.log('filteredCartJson:', filteredCartJson);
   // set updated cart cookie
   // Stringify the cart information, before setting it (cookies are strings)
   cookies().set(`cart`, JSON.stringify(filteredCartJson));
 }
 
 export async function addOne(productId) {
-  console.log('Hello from addOne');
   // Get cart Cookie
   const cartCookie = await getCookie('cart');
-
   // Convert Cart to JSON
   const cartJson = parseJson(cartCookie);
 
+  // Go through each product in cart
   const newCart = cartJson.map((product) => {
+    // Find product you'd like to add one more to the cart of
     if (Number(product.id) === productId) {
-      console.log('product inside addOne', product);
       const newQuantity = product.quantity + 1;
       product.quantity = newQuantity;
       return product;
-    } else {
-      return product;
     }
+    return console.log(`Adding 1 more of product: ${Number(product.id)}`);
   });
 
   cookies().set('cart', JSON.stringify(newCart));
 }
 
 export async function subtractOne(productId) {
-  console.log('Hello from subtractOne');
   // Get cart Cookie
   const cartCookie = await getCookie('cart');
 
   // Convert Cart to JSON
   const cartJson = parseJson(cartCookie);
 
-  const newCart = cartJson.map((product) => {
-    if (Number(product.id) === productId) {
-      console.log('product inside addOne', product);
-      const newQuantity = product.quantity - 1;
-      product.quantity = newQuantity;
-      return product;
-    } else {
-      return product;
-    }
-  });
+  // Find product to be updated
+  const productToBeUpdated = cartJson.find(
+    (product) => productId === Number(product.id),
+  );
 
-  cookies().set('cart', JSON.stringify(newCart));
+  // If there is only one product left
+  if (productToBeUpdated.quantity === 1) {
+    // Remove product from array of products and save new array inside newCart
+    const newCart = cartJson.filter((product) => {
+      // Only keep products, whose id doesn't match the one to be removed
+      if (product.id !== productToBeUpdated.id) {
+        return product;
+      }
+      return console.log('Product deleted from cart.');
+    });
+    // Set Cart to newCart, not containing deleted product
+    cookies().set('cart', JSON.stringify(newCart));
+  } else {
+    // Otherwise reduce item quantity by 1
+    // Go through each object in cart
+    const updatedCart = cartJson.map((product) => {
+      // Find the object
+      if (Number(product.id) === productId) {
+        // Reduce the quantity by 1 and save it to a
+        product.quantity -= 1;
+        return product;
+      }
+      return console.log('Product quantity reduced by 1.');
+    });
+    cookies().set('cart', JSON.stringify(updatedCart));
+  }
 }
 
 export async function redirectToCheckout() {

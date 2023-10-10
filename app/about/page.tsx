@@ -14,7 +14,6 @@ export default function AboutPage() {
   console.log(myComplexObjectAsString);
 
   // Convert Objects as string to JS object
-  const myComplexObjectIntoJsonAgain = JSON.parse(myComplexObjectAsString);
   // console.log(myComplexObjectIntoJsonAgain);
   return (
     <main className={styles.main}>
