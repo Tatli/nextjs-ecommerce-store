@@ -8,8 +8,12 @@ export default function HeaderCart() {
   let totalQuantity = 0;
   // iterate through each item in the cart and add the quantity to totalQuantity
   cart.forEach((item) => {
-    totalQuantity += item.quantity;
+    totalQuantity += parseInt(item.quantity.toString());
   });
 
-  return <Link href="/cart">Items in cart: {totalQuantity}</Link>;
+  return (
+    <Link data-test-id="cart-link" href="/cart">
+      Items in cart: <span data-test-id="cart-count">{totalQuantity}</span>
+    </Link>
+  );
 }

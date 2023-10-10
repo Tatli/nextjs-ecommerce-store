@@ -29,13 +29,10 @@ export default function RootLayout({
             {/* This is optimized */}
             <Link href="/">Home</Link>
             <Link href="/about">About</Link>
-            {/* <Link href="/fruits">Fruits</Link> */}
             <Link data-test-id="products-link" href="/products">
               Products
             </Link>
-            <span data-test-id="cart-count">
-              <HeaderCart />
-            </span>
+            <HeaderCart />
           </nav>
         </header>
         {/* Will only update on site refresh */}

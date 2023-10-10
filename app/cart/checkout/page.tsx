@@ -59,7 +59,7 @@ export default function Checkout() {
         <br />
         <label>
           Expiration Date:
-          <input type="number" data-test-id="checkout-expiration-date" />
+          <input data-test-id="checkout-expiration-date" />
         </label>
         <br />
         <label>
