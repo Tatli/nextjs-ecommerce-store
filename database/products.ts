@@ -1,15 +1,7 @@
 import 'server-only';
-import { cache } from 'react';
+import React, { cache } from 'react';
 import { Product } from '../migrations/00000-createTableProducts';
 import { sql } from './connect';
-
-// export const products1 = [
-//   { id: 1, name: 'One', price: 30, rating: 4 },
-//   { id: 2, name: 'Two', price: 50, rating: 3 },
-//   { id: 3, name: 'Three', price: 90, rating: 2 },
-//   { id: 4, name: 'Four', price: 150, rating: 1 },
-//   { id: 5, name: 'Five', price: 250, rating: 5 },
-// ];
 
 export const getProducts = cache(async () => {
   const products = await sql<Product[]>`
@@ -30,7 +22,3 @@ export const getProductById = cache(async (id: number) => {
     `;
   return product;
 });
-
-// export function getProduct(id: number) {
-//   return products1.find((product) => product.id === id);
-// }

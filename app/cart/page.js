@@ -1,5 +1,6 @@
+import { getProducts } from '../../database/products';
 import styles from '../page.module.scss';
-import CartTotal, { getProductsInCart } from './CartTotal';
+import CartTotal, { getCookieAsObject, getProductsInCart } from './CartTotal';
 import ChangeQuantity from './ChangeQuantity';
 import RedirectToCheckout from './RedirectToCheckout';
 import RemoveProduct from './RemoveProduct';
@@ -13,7 +14,18 @@ export const metadata = {
 };
 
 export default async function Cart() {
-  const productsInCart = await getProductsInCart();
+  // Get products in cart
+  const cartCookieJson = await getCookieAsObject();
+  console.log('cartCookieJson inside Cart.js: ', cartCookieJson);
+
+  // Get products in database
+  const productsFromDatabase = await getProducts();
+  console.log('productsFromDatabase inside Cart.js: ', productsFromDatabase);
+
+  const productsInCart = await getProductsInCart(
+    cartCookieJson,
+    productsFromDatabase,
+  );
 
   return (
     <main className={styles.main}>
