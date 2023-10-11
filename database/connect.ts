@@ -3,69 +3,20 @@ import { headers } from 'next/headers';
 import postgres, { Sql } from 'postgres';
 import { setEnvironmentVariables } from '../util/config.mjs';
 
-// Function now in config.js file
-// export function setEnvironmentVariables() {
-//   // Replacement for unmaintained dotenv-safe package
-//   // https://github.com/rolodato/dotenv-safe/issues/128#issuecomment-1383176751
-//   //
-//   // FIXME: Remove this and switch to dotenv/safe if this proposal gets implemented:
-//   // https://github.com/motdotla/dotenv/issues/709
-
-//   dotenv.config();
-
-//   const unconfiguredEnvVars = Object.keys(
-//     dotenv.parse(readFileSync('./.env.example')),
-//   ).filter((exampleKey) => !process.env[exampleKey]);
-
-//   if (unconfiguredEnvVars.length > 0) {
-//     throw new Error(
-//       `.env.example environment ${
-//         unconfiguredEnvVars.length > 1 ? 'variables' : 'variable'
-//       } ${unconfiguredEnvVars.join(', ')} not configured in .env file`,
-//     );
-//   }
-//   // End replacement for dotenv-safe
-// }
-
-// Call the function to set the env variables
 setEnvironmentVariables();
 
-// Instead of connecting to our database like this
-// We connect by setting the connection with globalThis
-//
-// const sql = postgres({
-//   transform: {
-//     // Transform values from "snake_case" to "camelCase"
-//     ...postgres.camel,
-
-//     // In postgres undefined value will lead to error when you send undefined data
-//     undefined: null,
-//   },
-// });
-
-// globalThis is an environment in our global ecosystem
-// sets up a variable that is global
-// it exists in the browser and in node js
-// In node js: type node into console, then globalThis -> returns Object
-// In browser: Console -> globalThis -> object
-// ### postgreSqlClient will be globally available in our project
 declare module globalThis {
   let postgresSqlClient: Sql;
 }
 
 // Connect only once to the database
 // https://github.com/vercel/next.js/issues/7811#issuecomment-715259370
-
 function connectOneTimeToDatabase() {
-  // If there is no postgresSqlClient defined in globalThis
-  // initiate it with a new postgres() instance
   if (!('postgresSqlClient' in globalThis)) {
     globalThis.postgresSqlClient = postgres({
+      ssl: Boolean(process.env.POSTGRES_URL),
       transform: {
-        // Transform values from "snake_case" to "camelCase"
         ...postgres.camel,
-
-        // In postgres undefined value will lead to error when you send undefined data
         undefined: null,
       },
     });
@@ -88,21 +39,9 @@ function connectOneTimeToDatabase() {
     ...sqlParameters: Parameters<typeof globalThis.postgresSqlClient>
   ) => {
     headers();
-    // console.log('sqlParameters:', sqlParameters);
     return globalThis.postgresSqlClient(...sqlParameters);
   }) as typeof globalThis.postgresSqlClient;
 }
 
-// Connection slots error everytime you refresh you  rerender so you get a new connection slot so we use
-// Create function to call database only once
-
+// Connect to PostgreSQL
 export const sql = connectOneTimeToDatabase();
-
-// The function is written "better" in products.ts file
-//
-// export async function getAllProductsFromDatabase() {
-//   const products = await sql`
-//   SELECT * from products
-//   `;
-//   return products;
-// }
