@@ -3,6 +3,6 @@ import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
 export async function deleteCookie() {
-  cookies().delete('cart');
-  await redirect('/cart/checkout/thankyou');
+  await cookies().delete('cart');
+  redirect('/cart/checkout/thankyou');
 }

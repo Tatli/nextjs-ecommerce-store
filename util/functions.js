@@ -56,3 +56,12 @@ export async function setProductQuantityInCart(
 
   return cookieData;
 }
+
+export function getCartTotal(productsInCart) {
+  let cartTotal = 0;
+
+  productsInCart.forEach((p) => {
+    cartTotal += p.price * p.quantity;
+  });
+  return cartTotal;
+}

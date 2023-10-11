@@ -16,17 +16,26 @@ export default function Checkout() {
       <form>
         <label>
           First Name:
-          <input placeholder="First Name" data-test-id="checkout-first-name" />
+          <input
+            required
+            placeholder="First Name"
+            data-test-id="checkout-first-name"
+          />
         </label>
         <br />
         <label>
           Last Name:
-          <input placeholder="Last Name" data-test-id="checkout-last-name" />
+          <input
+            required
+            placeholder="Last Name"
+            data-test-id="checkout-last-name"
+          />
         </label>
         <br />
         <label>
           E-Mail:
           <input
+            required
             placeholder="Email"
             type="email"
             data-test-id="checkout-email"
@@ -35,17 +44,22 @@ export default function Checkout() {
         <br />
         <label>
           Address:
-          <input placeholder="Address" data-test-id="checkout-address" />
+          <input
+            required
+            placeholder="Address"
+            data-test-id="checkout-address"
+          />
         </label>
         <br />
         <label>
           City:
-          <input placeholder="City" data-test-id="checkout-city" />
+          <input required placeholder="City" data-test-id="checkout-city" />
         </label>
         <br />
         <label>
           Postal Code:
           <input
+            required
             placeholder="Postal Code"
             data-test-id="checkout-postal-code"
           />
@@ -53,12 +67,17 @@ export default function Checkout() {
         <br />
         <label>
           Country:
-          <input placeholder="Country" data-test-id="checkout-country" />
+          <input
+            required
+            placeholder="Country"
+            data-test-id="checkout-country"
+          />
         </label>
         <br />
         <label>
           Credit Card Number:
           <input
+            required
             placeholder="XXXX XXXX XXXX XXXX"
             data-test-id="checkout-credit-card"
           />
@@ -67,6 +86,7 @@ export default function Checkout() {
         <label>
           Expiration Date:
           <input
+            required
             placeholder="MM/YYYY"
             data-test-id="checkout-expiration-date"
           />
@@ -74,7 +94,11 @@ export default function Checkout() {
         <br />
         <label>
           Security Code:
-          <input placeholder="123" data-test-id="checkout-security-code" />
+          <input
+            required
+            placeholder="123"
+            data-test-id="checkout-security-code"
+          />
         </label>
         <br />
       </form>

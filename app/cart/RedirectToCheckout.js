@@ -1,12 +1,12 @@
 'use client';
-import { redirectToCheckout } from './actions';
+import { redirect } from 'next/navigation';
 
 export default function RedirectToCheckout() {
   return (
     <form>
       <button
         formAction={() => {
-          redirectToCheckout();
+          redirect('/cart/checkout/');
         }}
         data-test-id="cart-checkout"
       >

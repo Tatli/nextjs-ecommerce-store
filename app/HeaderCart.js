@@ -3,7 +3,7 @@ import { getParsedCookie } from '../util/cookies';
 
 export default async function HeaderCart() {
   const cart = await getParsedCookie();
-  // console.log('cart', cart);
+  console.log('cart inside HeaderCart: ', cart);
   let totalQuantity = 0;
   // iterate through each item in the cart and add the quantity to totalQuantity
   cart.forEach((item) => {

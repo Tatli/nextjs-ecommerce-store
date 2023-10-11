@@ -1,11 +1,9 @@
 'use server';
 import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
 import { getParsedCookie } from '../../util/cookies';
-import { parseJson } from '../../util/json';
 
 export async function deleteProduct(productId) {
-  console.log('productId inside deleteProduct:', typeof productId);
+  console.log('\n', 'Deleting Product: ', productId);
 
   // if no cartCookie make it empty array, otherwise parseJson to make it an array of objects
   const cartJson = await getParsedCookie();
@@ -19,9 +17,9 @@ export async function deleteProduct(productId) {
       // return only products, which don't match the id of product to be deleted/given product
       return item;
     }
+    return console.log('Item deleted successfully.');
   });
 
-  console.log('filteredCartJson:', filteredCartJson);
   // set updated cart cookie
   // Stringify the cart information, before setting it (cookies are strings)
   cookies().set(`cart`, JSON.stringify(filteredCartJson));
@@ -47,7 +45,7 @@ export async function addOne(productId) {
 }
 
 export async function subtractOne(productId) {
-  console.log('productId inside subtractOne', productId);
+  console.log('Subtracting productId:', productId);
   // Convert Cart to JSON
   const cartJson = await getParsedCookie();
 
@@ -74,8 +72,4 @@ export async function subtractOne(productId) {
     });
     cookies().set('cart', JSON.stringify(updatedCart));
   }
-}
-
-export async function redirectToCheckout() {
-  await redirect('/cart/checkout/');
 }
