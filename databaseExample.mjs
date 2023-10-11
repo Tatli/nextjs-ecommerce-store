@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs';
 import dotenv from 'dotenv';
+import postgres from 'postgres';
 
 // this file is used by node.js only
 
