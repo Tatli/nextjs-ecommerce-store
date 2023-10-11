@@ -1,7 +1,15 @@
 import 'server-only';
-import React, { cache } from 'react';
+import { cache } from 'react';
 import { Product } from '../migrations/00000-createTableProducts';
 import { sql } from './connect';
+
+// export const getProducts = async () => {
+//   const products = await sql<Product[]>`
+// SELECT * FROM products
+// `;
+
+//   return products;
+// };
 
 export const getProducts = cache(async () => {
   const products = await sql<Product[]>`

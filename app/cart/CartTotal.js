@@ -1,68 +1,17 @@
 import { getProducts } from '../../database/products';
-import { getCookie } from '../../util/cookies';
-import { parseJson } from '../../util/json';
+import { getParsedCookie } from '../../util/cookies';
+import { getProductsInCart } from '../../util/functions';
 
 export function getCookieAsObject() {
   // Get products in cart
-  const productsInCart = getCookie(`cart`);
+  const productsInCart = getParsedCookie();
 
-  return !productsInCart ? [] : parseJson(productsInCart);
+  return productsInCart;
 }
 
-export async function getProductsInCart(cartCookieJson, productsFromDatabase) {
-  console.log('cartCookieJson inside CartTotal.js: ', cartCookieJson);
-  console.log(
-    'productsFromDatabase inside CartTotal.js: ',
-    productsFromDatabase,
-  );
-  try {
-    // // Get products in cart
-    // const cartCookieJson = getCookieAsObject();
-    // // Get products in database
-    // const productsFromDatabase = await getProducts();
-
-    // Get product info depending on which product is in cart´
-    const productsInCart = await cartCookieJson
-      .map((cartItem, index) => {
-        console.log(`Hi from inside .map # ${index}`);
-        console.log(`cartCookieJson inside .map # ${index}: `, cartCookieJson);
-        console.log(
-          `productsFromDatabase inside .map # ${index}: `,
-          productsFromDatabase,
-        );
-
-        const productFromDatabase = productsFromDatabase.find(
-          (databaseProduct) =>
-            Number(databaseProduct.id) === Number(cartItem.id),
-        );
-        if (!productFromDatabase) {
-          return null;
-        }
-        console.log('Hi from deeper inside .map');
-        const quantity = parseInt(cartItem.quantity);
-        const subtotal = parseFloat(productFromDatabase.price) * quantity;
-
-        return {
-          id: productFromDatabase.id,
-          name: productFromDatabase.name,
-          price: productFromDatabase.price,
-          quantity: quantity,
-          total: subtotal,
-        };
-      })
-      .filter(Boolean);
-
-    // console.log('cartProductsWithQuantity', cartProductsWithQuantity);
-    return productsInCart;
-  } catch (error) {
-    console.error('Error:', error);
-    throw error;
-  }
-}
-
+// Get products in cart
 export default async function CartTotal() {
-  // Get products in cart
-  const cartCookieJson = await getCookieAsObject();
+  const cartCookieJson = await getParsedCookie();
   console.log('cartCookieJson inside Cart.js: ', cartCookieJson);
 
   // Get products in database

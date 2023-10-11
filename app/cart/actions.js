@@ -1,16 +1,14 @@
 'use server';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
-import { getCookie } from '../../util/cookies';
+import { getParsedCookie } from '../../util/cookies';
 import { parseJson } from '../../util/json';
 
 export async function deleteProduct(productId) {
   console.log('productId inside deleteProduct:', typeof productId);
-  // Get cart Cookie
-  const cartCookie = await getCookie('cart');
 
   // if no cartCookie make it empty array, otherwise parseJson to make it an array of objects
-  const cartJson = !cartCookie ? [] : parseJson(cartCookie);
+  const cartJson = await getParsedCookie();
 
   // filter out the product from the cart
   const filteredCartJson = cartJson.filter((item) => {
@@ -30,31 +28,28 @@ export async function deleteProduct(productId) {
 }
 
 export async function addOne(productId) {
-  // Get cart Cookie
-  const cartCookie = await getCookie('cart');
   // Convert Cart to JSON
-  const cartJson = parseJson(cartCookie);
+  const cartJson = await getParsedCookie();
 
   // Go through each product in cart
   const newCart = cartJson.map((product) => {
-    // Find product you'd like to add one more to the cart of
+    // Find product you'd like to
     if (Number(product.id) === productId) {
-      const newQuantity = product.quantity + 1;
-      product.quantity = newQuantity;
+      // add one more to the cart of that product
+      product.quantity += 1;
       return product;
     }
-    return console.log(`Adding 1 more of product: ${Number(product.id)}`);
+    // also add the other products, but don't change their quantity
+    return product;
   });
 
   cookies().set('cart', JSON.stringify(newCart));
 }
 
 export async function subtractOne(productId) {
-  // Get cart Cookie
-  const cartCookie = await getCookie('cart');
-
+  console.log('productId inside subtractOne', productId);
   // Convert Cart to JSON
-  const cartJson = parseJson(cartCookie);
+  const cartJson = await getParsedCookie();
 
   // Find product to be updated
   const productToBeUpdated = cartJson.find(
@@ -63,27 +58,19 @@ export async function subtractOne(productId) {
 
   // If there is only one product left
   if (productToBeUpdated.quantity === 1) {
-    // Remove product from array of products and save new array inside newCart
-    const newCart = cartJson.filter((product) => {
-      // Only keep products, whose id doesn't match the one to be removed
-      if (product.id !== productToBeUpdated.id) {
-        return product;
-      }
-      return console.log('Product deleted from cart.');
-    });
-    // Set Cart to newCart, not containing deleted product
-    cookies().set('cart', JSON.stringify(newCart));
+    await deleteProduct(Number(productToBeUpdated.id));
   } else {
     // Otherwise reduce item quantity by 1
     // Go through each object in cart
     const updatedCart = cartJson.map((product) => {
       // Find the object
       if (Number(product.id) === productId) {
-        // Reduce the quantity by 1 and save it to a
+        // Reduce the quantity by 1
         product.quantity -= 1;
         return product;
       }
-      return console.log('Product quantity reduced by 1.');
+      // also add the other products, but don't change their quantity
+      return product;
     });
     cookies().set('cart', JSON.stringify(updatedCart));
   }

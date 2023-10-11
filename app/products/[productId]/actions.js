@@ -1,38 +1,21 @@
 'use server';
-
 import { cookies } from 'next/headers';
-import { getCookie } from '../../../util/cookies';
-import { parseJson } from '../../../util/json';
+import { getParsedCookie } from '../../../util/cookies';
+import { setProductQuantityInCart } from '../../../util/functions';
 
-export async function setProductQuantityInCart(productId, quantity) {
-  // get the cookie called 'cart' save in cartCookie
-  const cartCookie = getCookie('cart');
-
-  // if no cartCookie make it empty array, otherwise parseJson to make it an array of objects
-  const cartJson = !cartCookie ? [] : parseJson(cartCookie);
-
-  // find the item(object) whose quantity is to be updated in the Array
-  const itemInCart = cartJson.find((item) => {
-    return item.id === productId;
-  });
-
-  // Convert the quantity inside of the matched item to an integer/number
-  if (itemInCart) {
-    const updatedQuantity = itemInCart.quantity + quantity;
-    itemInCart.quantity = updatedQuantity;
-  } else {
-    cartJson.push({
-      id: productId,
-      quantity: quantity,
-    });
-  }
-
-  await cookies().set('cart', JSON.stringify(cartJson));
+export async function setProductQuantity(productId, quantity, cookie) {
+  const cookieData = await setProductQuantityInCart(
+    productId,
+    quantity,
+    cookie,
+  );
+  console.log('cookieData inside setProductQuantity:', cookieData);
+  cookies().set('cart', JSON.stringify(cookieData));
 }
 
 export async function updateCartCookie(quantityInput) {
   // Get current value of total quantity of all products in Cart
-  const cartQuantityCookie = getCookie(`cart`);
+  const cartQuantityCookie = await getParsedCookie();
 
   // Convert cookie value to a number, or 0 if it's not set
   const currentQuantity = parseInt(cartQuantityCookie) || 0;

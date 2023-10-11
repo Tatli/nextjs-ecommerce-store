@@ -1,11 +1,11 @@
 'use client';
 import { useState } from 'react';
-import { setProductQuantityInCart } from './actions';
+import { setProductQuantity } from './actions';
 
 export default function ProductQuantity(props) {
   const [quantity, setQuantity] = useState(1);
   console.log('typeof quantity', typeof quantity, quantity);
-
+  // get the cookie called 'cart' save in cartCookie
   return (
     <form>
       <label>
@@ -20,7 +20,7 @@ export default function ProductQuantity(props) {
       </label>
       <button
         formAction={async () => {
-          await setProductQuantityInCart(props.productId, quantity);
+          await setProductQuantity(props.productId, quantity, props.cookieData);
           console.log('typeof quantity', typeof quantity, quantity);
           // await updateProductQuantityCookie(quantity, props.productId);
           // await updateCartCookie(quantity);

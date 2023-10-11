@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { getProductById, getProducts } from '../../database/products';
-import { getCookie } from '../../util/cookies';
+import { getParsedCookie } from '../../util/cookies';
 import { parseJson } from '../../util/json';
 import { deleteProduct } from './actions';
 
@@ -14,9 +14,9 @@ export const metadata = {
 
 export function getCookieAsObject() {
   // Get products in cart
-  const productsInCart = getCookie(`cart`);
+  const productsInCart = getParsedCookie();
 
-  return !productsInCart ? [] : parseJson(productsInCart);
+  return productsInCart;
 }
 
 // export async function getProductDetailsByCart() {

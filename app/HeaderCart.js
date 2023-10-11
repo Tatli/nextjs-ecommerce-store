@@ -1,10 +1,8 @@
 import Link from 'next/link';
-import { getCookie } from '../util/cookies';
-import { parseJson } from '../util/json';
+import { getParsedCookie } from '../util/cookies';
 
-export default function HeaderCart() {
-  const cartCookie = getCookie(`cart`);
-  const cart = cartCookie ? parseJson(cartCookie) : [];
+export default async function HeaderCart() {
+  const cart = await getParsedCookie();
   // console.log('cart', cart);
   let totalQuantity = 0;
   // iterate through each item in the cart and add the quantity to totalQuantity

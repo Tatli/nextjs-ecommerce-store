@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import { getProductById } from '../../../database/products';
+import { getParsedCookie } from '../../../util/cookies';
 import styles from '../../page.module.scss';
 import ProductQuantity from './ProductQuantity';
 
@@ -11,6 +12,7 @@ export async function generateMetadata({ params }) {
 }
 export default async function ProductPage(props) {
   const singleProduct = await getProductById(Number(props.params.productId));
+  const cookieData = await getParsedCookie();
   // const singleProduct = await getProductById(Number(props.params.productId));
   // console.log(singleProduct);
   // console.log(props);
@@ -34,7 +36,10 @@ export default async function ProductPage(props) {
       <br />
       <span>Description: {singleProduct.description}</span>
       <br />
-      <ProductQuantity productId={props.params.productId} />
+      <ProductQuantity
+        productId={props.params.productId}
+        cookieData={cookieData}
+      />
     </main>
   );
 }

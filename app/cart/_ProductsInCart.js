@@ -1,6 +1,6 @@
 import { getProductById } from '../../database/products';
 // import { getProducts } from '../../database/products';
-import { getCookie } from '../../util/cookies';
+import { getParsedCookie } from '../../util/cookies';
 import { parseJson } from '../../util/json';
 
 // import RemoveProduct from './RemoveProduct';
@@ -22,9 +22,9 @@ import { parseJson } from '../../util/json';
 
 export function getCookieAsObject() {
   // Get products in cart
-  const productsInCart = getCookie(`cart`);
+  const productsInCart = getParsedCookie();
 
-  return !productsInCart ? [] : parseJson(productsInCart);
+  return productsInCart;
 }
 
 // const singleProductFromDatabase = await getProductById(1);

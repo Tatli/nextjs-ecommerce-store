@@ -1,6 +1,7 @@
 import { getProducts } from '../../database/products';
+import { getProductsInCart } from '../../util/functions';
 import styles from '../page.module.scss';
-import CartTotal, { getCookieAsObject, getProductsInCart } from './CartTotal';
+import CartTotal, { getCookieAsObject } from './CartTotal';
 import ChangeQuantity from './ChangeQuantity';
 import RedirectToCheckout from './RedirectToCheckout';
 import RemoveProduct from './RemoveProduct';

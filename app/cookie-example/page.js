@@ -1,9 +1,9 @@
-import { getCookie } from '../../util/cookies';
+import { getParsedCookie } from '../../util/cookies';
 import SetCookieForm from './SetCookieForm';
 
 export default function setCookiePage() {
   // Get value of testCookie
-  const getCookieValue = getCookie('testCookie');
+  const getCookieValue = getParsedCookie();
   // console.log(getCookieValue);
   // const parsedCookie = JSON.parse(getCookieValue);
 

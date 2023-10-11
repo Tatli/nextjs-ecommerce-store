@@ -1,8 +1,10 @@
 import { cookies } from 'next/headers';
+import { parseJson } from './json';
 
-// nullish coalescing oparator
-export function getCookie(name) {
-  // It's like "binding" smth.
-  // If there's something inside of the cookie {name}, return the value
-  return cookies().get(name)?.value;
+export function getParsedCookie() {
+  // get the cookie called 'cart' save in cartCookie
+  const cartCookie = cookies().get('cart');
+
+  // if no cartCookie make it empty array, otherwise parseJson to make it an array of objects
+  return !cartCookie ? [] : parseJson(cartCookie.value);
 }
