@@ -101,9 +101,10 @@ export default function Checkout() {
           />
         </label>
         <br />
+
+        <CartTotal />
+        <ConfirmOrderButton />
       </form>
-      <CartTotal />
-      <ConfirmOrderButton />
     </main>
   );
 }
