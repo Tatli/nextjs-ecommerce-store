@@ -31,6 +31,7 @@ export default async function ProductPage(props) {
         width={400}
         height={400}
         data-test-id="product-image"
+        unoptimized
       />
       <br />
       <span>Price:</span>{' '}

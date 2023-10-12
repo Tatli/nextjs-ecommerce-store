@@ -29,6 +29,7 @@ export default async function ProductsPage() {
                 alt={product.name}
                 width={200}
                 height={200}
+                unoptimized
               />
             </Link>
           </div>
