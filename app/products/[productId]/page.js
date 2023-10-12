@@ -8,7 +8,10 @@ import ProductQuantity from './ProductQuantity';
 export async function generateMetadata({ params }) {
   const singleProduct = await getProductById(Number(params.productId));
   return {
-    title: singleProduct ? `Product Details: ${singleProduct.name}` : '',
+    title: singleProduct ? `Product Details for: ${singleProduct.name}` : '',
+    description: singleProduct
+      ? `Single product page for product: ${singleProduct.name}`
+      : `Details about a single product.`,
   };
 }
 export default async function ProductPage(props) {

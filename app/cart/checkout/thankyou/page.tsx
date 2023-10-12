@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Thank you for your order',
+  description: 'Thank you for your order.',
 };
 
 export default function ThankYou() {

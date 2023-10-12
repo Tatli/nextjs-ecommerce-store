@@ -5,6 +5,7 @@ import ConfirmOrderButton from './ConfirmOrderButton';
 
 export const metadata: Metadata = {
   title: 'Checkout',
+  description: 'Checkout form',
 };
 
 export default function Checkout() {

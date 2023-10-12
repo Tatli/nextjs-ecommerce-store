@@ -3,6 +3,7 @@ import styles from '../page.module.scss';
 
 export const metadata: Metadata = {
   title: 'About',
+  description: 'About page. Information about the shop.',
 };
 
 export default function AboutPage() {

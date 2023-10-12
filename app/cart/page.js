@@ -12,6 +12,7 @@ import RemoveProduct from './RemoveProduct';
 
 export const metadata = {
   title: 'Cart',
+  description: 'All products inside of your cart.',
 };
 
 export default async function Cart() {
