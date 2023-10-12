@@ -1,6 +1,7 @@
 FROM node:18-alpine AS builder
 ENV NODE_ENV production
 # Install necessary tools
+# Necessary for dependencies
 RUN apk add --no-cache libc6-compat yq --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community
 # Install pnpm
 RUN corepack enable && corepack prepare pnpm@latest --activate

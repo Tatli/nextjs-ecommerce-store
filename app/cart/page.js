@@ -54,7 +54,8 @@ export default async function Cart() {
                 </span>
                 <br />
                 {/* Show Subtotal */}
-                <span>{`Subtotal: ${subtotal.toFixed(2)}`}</span>
+                <span>Subtotal: </span>
+                <span>{subtotal.toFixed(2)}</span>
                 <br />
                 {/* <RemoveProduct props={parsedItemId} /> */}
                 <RemoveProduct productId={productId} />
