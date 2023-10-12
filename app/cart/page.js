@@ -36,7 +36,7 @@ export default async function Cart() {
         {productsInCart.map((product) => {
           const productId = Number(product.id);
           const price = Number(product.price);
-          const quantity = product.quantity;
+          const quantity = Number(product.quantity);
           const subtotal = quantity * price;
 
           if (product.quantity > 0) {
