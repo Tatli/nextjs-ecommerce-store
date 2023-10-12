@@ -26,6 +26,9 @@ export default async function CartTotal() {
   const cartTotal = getCartTotal(productsInCart);
 
   return (
-    <span data-test-id="cart-total">Cart Total: {cartTotal.toFixed(2)}</span>
+    <>
+      <span>Cart Total: </span>
+      <span data-test-id="cart-total">{cartTotal.toFixed(2)}</span>
+    </>
   );
 }

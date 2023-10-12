@@ -47,11 +47,11 @@ export default async function Cart() {
               >
                 <span>{product.name}</span>
                 <br />
+                <span>Quantity</span>
                 <span data-test-id={`cart-product-quantity-${productId}`}>
-                  {`Quantity: ${quantity}`}
-                  <ChangeQuantity productId={productId} />
-                  {/* {console.log('productId inside page.js', productId)} */}
+                  {quantity}
                 </span>
+                <ChangeQuantity productId={productId} />
                 <br />
                 {/* Show Subtotal */}
                 <span>Subtotal: </span>
