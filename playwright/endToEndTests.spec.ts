@@ -69,7 +69,7 @@ test('Checkout flow test', async ({ page }) => {
   await page.getByTestId('checkout-confirm-order').click();
   await page.waitForURL('http://localhost:3000/cart/checkout/thankyou');
   await expect(page).toHaveURL('http://localhost:3000/cart/checkout/thankyou');
-  await expect(page).toHaveTitle('Thank you for your order | TimeIT');
+  await expect(page).toHaveTitle('Thank you for your order | AccessIT');
 
   // Verify emptied cart
   await expect(page.getByTestId('cart-count')).toHaveText('0');
