@@ -25,7 +25,7 @@ export default async function ProductsPage() {
             >
               {product.name}
               <Image
-                src={`/images/${product.name}.jpg`}
+                src={`/images/${product.name}.avif`}
                 alt={product.name}
                 width={200}
                 height={200}

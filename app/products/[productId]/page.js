@@ -25,7 +25,7 @@ export default async function ProductPage(props) {
       <div>This is a single product page</div>
       <h1>{singleProduct.name}</h1>
       <img
-        src={`/images/${singleProduct.name}.jpg`}
+        src={`/images/${singleProduct.name}.avif`}
         alt={singleProduct.name}
         width={400}
         height={400}
