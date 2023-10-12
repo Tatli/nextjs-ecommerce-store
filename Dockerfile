@@ -8,6 +8,9 @@ WORKDIR /app
 # Copy the content of the project to the machine
 COPY . .
 RUN yq --inplace --output-format=json '(.dependencies = .dependencies * (.devDependencies | to_entries | map(select(.key | test("^(typescript|@types/*|eslint-config-upleveled)$"))) | from_entries)) | (.devDependencies = {})' package.json
+# force will build node_modules anew (important for initial build)
+# first "pnpm build" finished in 1.3s which makes no sense
+# RUN pnpm install --force
 RUN pnpm install
 RUN pnpm build
 

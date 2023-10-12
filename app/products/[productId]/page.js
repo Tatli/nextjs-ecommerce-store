@@ -32,7 +32,8 @@ export default async function ProductPage(props) {
         data-test-id="product-image"
       />
       <br />
-      <span data-test-id="product-price">Price: {singleProduct.price}</span>
+      <span>Price:</span>{' '}
+      <span data-test-id="product-price">{singleProduct.price}</span>
       <br />
       <span>Description: {singleProduct.description}</span>
       <br />
