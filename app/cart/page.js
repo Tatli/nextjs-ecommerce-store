@@ -47,7 +47,7 @@ export default async function Cart() {
               >
                 <span>{product.name}</span>
                 <br />
-                <span>Quantity</span>
+                <span>Quantity: </span>
                 <span data-test-id={`cart-product-quantity-${productId}`}>
                   {quantity}
                 </span>

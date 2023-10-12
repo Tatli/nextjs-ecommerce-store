@@ -24,7 +24,7 @@ export default async function ProductPage(props) {
     <main className={styles.main}>
       <div>This is a single product page</div>
       <h1>{singleProduct.name}</h1>
-      <img
+      <Image
         src={`/images/${singleProduct.name}.avif`}
         alt={singleProduct.name}
         width={400}
