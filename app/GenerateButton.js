@@ -30,7 +30,6 @@ export default function GenerateButton() {
   return (
     <div>
       <button
-        className={style.generateButton}
         style={{ backgroundColor: color }}
         onClick={() => {
           // Create new random hex color
