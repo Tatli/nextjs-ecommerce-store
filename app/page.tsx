@@ -1,4 +1,3 @@
-import { Cardo } from 'next/font/google';
 import styles from '../app/page.module.scss';
 
 export default function HomePage() {
