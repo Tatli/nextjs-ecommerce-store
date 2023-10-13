@@ -15,7 +15,7 @@ export default async function HeaderCart() {
 
   return (
     <Link data-test-id="cart-link" href="/cart">
-      Items in cart: <span data-test-id="cart-count">{totalQuantity}</span>
+      Cart: <span data-test-id="cart-count">{totalQuantity}</span>
     </Link>
   );
 }

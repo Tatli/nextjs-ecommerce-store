@@ -30,9 +30,9 @@ export default async function Cart() {
   );
 
   return (
-    <main className={styles.main}>
+    <main className={styles.singleProduct}>
       <h1>Cart:</h1>
-      <h1>Products in Cart:</h1>
+      <h2>Products in Cart:</h2>
       <ul>
         {productsInCart.map((product) => {
           const productId = Number(product.id);
@@ -53,13 +53,14 @@ export default async function Cart() {
                   {quantity}
                 </span>
                 <ChangeQuantity productId={productId} />
-                <br />
+
                 {/* Show Subtotal */}
                 <span>Subtotal: </span>
                 <span>{subtotal.toFixed(2)}</span>
                 <br />
                 {/* <RemoveProduct props={parsedItemId} /> */}
                 <RemoveProduct productId={productId} />
+                <br />
               </li>
             );
           }

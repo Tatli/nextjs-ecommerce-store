@@ -23,6 +23,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <header>
           <nav>
+            <span>AccessIT</span>
             {/* This is not optimized */}
             {/* <a href="/">Home</a> */}
 

@@ -25,8 +25,7 @@ export default async function ProductPage(props) {
     return notFound();
   }
   return (
-    <main className={styles.main}>
-      <div>This is a single product page</div>
+    <main className={styles.singleProduct}>
       <h1>{singleProduct.name}</h1>
       <Image
         src={`/images/${singleProduct.name}.avif`}
